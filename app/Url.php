@@ -11,9 +11,10 @@ class Url extends Model
 
 	 Public static function getShort()
 	{
+		//generation du token
 		$token= str_random(5);
 		if(static::whereShort($token)->count() != 0 ){
-		return getShort() ;
+		return getShort();
 		}
 		return $token;
 	}
