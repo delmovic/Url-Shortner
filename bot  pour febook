@@ -1,0 +1,28 @@
+<?php
+//parametre
+$verifyToken="token";
+$acesstoken="xxx";
+//verification du token avec l'application
+if($_REQUEST['hub.verify_token']===$verifyToken){
+  echo $_REUEST['hub.chllenge'];
+  exit;
+}
+// la reponse du  bot
+   $input= json_decode( file_get_contents('php://input'),true);
+   $senderID=$input['entry'][0]['sender']['id'];
+   $messageText=$input['entry'][0]['messaging'][0]['message']['text'];
+   $reponse="Je ne comprend pas votre question,Veuillez me saluer s'il vous plait ?;
+   if($messageText=bonjour){
+   $reponse=Bonjour comment vous aller
+   } 
+   $reponse=[
+              'recipient'=>['id'=>$senderId],
+              'message'=>['text'=>$reponse]
+              ];
+     $ch=curl_init('https://graph.facebook.com/v2.6/me/message?access_token'.$access);
+     curl_setop($ch,CURLOPT_POST,1);
+     curl_setop($ch,CUROPTL_POSTFIELDS,json_encode($response));
+        curl_setop($ch,CURLOPT_HTTPEADER,['Content-Type: application/json']);
+        curl_exec($ch);
+        curl_close($ch);
+        ?>
